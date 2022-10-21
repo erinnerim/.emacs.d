@@ -1,0 +1,133 @@
+:PROPERTIES:
+:ID:       bb83a918-e99c-4c33-9dd8-02a44c030424
+:END:
+#+title: Emacs 27.2
+#+category: Emacs 27.2
+#+filetags: :Emacs:
+
+* Installation
+**  Build from Source (Debian) 
+   Link: [[https://github.com/hubisan/emacs-wsl#install-emacs-272][hubisan/emacs-wsl]]
+   1. Install all dependencies (taken from the snap):
+#+BEGIN_SRC bash
+      sudo apt update
+      sudo apt install -y autoconf automake bsd-mailx dbus-x11 debhelper dpkg-dev \
+	  libacl1-dev libasound2-dev libdbus-1-dev libgif-dev libgnutls28-dev libgpm-dev \
+	  libgtk-3-dev libjansson-dev libjpeg-dev liblcms2-dev liblockfile-dev libm17n-dev \
+	  libncurses5-dev libotf-dev libpng-dev librsvg2-dev \
+	  libselinux1-dev libsystemd-dev libtiff-dev libxml2-dev libxpm-dev procps quilt \
+	  sharutils texinfo zlib1g-dev gvfs libasound2 libaspell15 \
+	  libasyncns0 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libbrotli1 \
+	  libcairo-gobject2 libcairo2 libcanberra-gtk3-0 libcanberra-gtk3-module \
+	  libcanberra0 libdatrie1 libdb5.3 libdrm2 libegl1 \
+	  libepoxy0 libflac8 libfontconfig1 libfreetype6 libgbm1 libgdk-pixbuf2.0-0 \
+	  libgif7 libgl1 libglvnd0 libglx0 libgpm2 libgraphite2-3 libgstreamer-gl1.0-0 \
+	  libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgtk-3-0 libgudev-1.0-0 \
+	  libharfbuzz-icu0 libharfbuzz0b libhyphen0 libice6 libjansson4 \
+	  libjavascriptcoregtk-4.0-18 libjbig0 liblcms2-2 liblockfile1 \
+	  libltdl7 libm17n-0 libnotify4 libnss-mdns libnss-myhostname libnss-systemd \
+	  libogg0 liborc-0.4-0 libotf0 libpango-1.0-0 libpangocairo-1.0-0 \
+	  libpangoft2-1.0-0 libpixman-1-0 libpng16-16 libpulse0 librsvg2-2 libsasl2-2 \
+	  libsecret-1-0 libsm6 libsndfile1 libsoup2.4-1 libssl1.1 libstdc++6 libtdb1 \
+	  libthai0 libtiff5 libvorbis0a libvorbisenc2 libvorbisfile3 libwayland-client0 \
+	  libwayland-cursor0 libwayland-egl1 libwayland-server0 libwebp6 libwebpdemux2 \
+	  libwoff1 libx11-6 libx11-xcb1 libxau6 libxcb-render0 libxcb-shm0 libxcb1 \
+	  libxcomposite1 libxcursor1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxi6 \
+	  libxinerama1 libxkbcommon0 libxml2 libxpm4 libxrandr2 libxrender1 libxslt1.1 \
+	  libyajl2 \
+#+END_SRC
+      Problematic packages on Debian
+#+BEGIN_SRC bash
+      sudo apt install language-pack-en-base liboss4-salsa2 libcroco3 libenchant1c2a libicu66 libjpeg-turbo8 
+#+END_SRC
+   2. Download and extract emacs
+#+BEGIN_SRC bash
+      cd ~
+      wget https://ftp.gnu.org/pub/gnu/emacs/emacs-27.2.tar.gz
+      tar -xvzf emacs-27.2.tar.gz
+#+END_SRC
+   3. Configure and install emacs: This step will take a while and you are prompted to enter your password once.
+#+BEGIN_SRC bash
+      cd ~/emacs-27.2
+      ./configure --with-cairo
+      make
+      sudo make install
+      rm ~/emacs-27.2.tar.gz
+#+END_SRC
+   4. Try out if emacs works correctly with
+#+BEGIN_SRC bash
+      emacs -nw
+#+END_SRC
+**  Build from Source (Ubuntu)
+   Link: [[https://github.com/hubisan/emacs-wsl#install-emacs-272][hubisan/emacs-wsl]]
+   1. Install all dependencies (taken from the snap):
+#+BEGIN_SRC bash
+      sudo apt update
+      sudo apt install -y autoconf automake bsd-mailx dbus-x11 debhelper dpkg-dev \
+	  libacl1-dev libasound2-dev libdbus-1-dev libgif-dev libgnutls28-dev libgpm-dev \
+	  libgtk-3-dev libjansson-dev libjpeg-dev liblcms2-dev liblockfile-dev libm17n-dev \
+	  libncurses5-dev libotf-dev libpng-dev librsvg2-dev \
+	  libselinux1-dev libtiff-dev libxml2-dev libxpm-dev procps quilt \
+	  sharutils texinfo zlib1g-dev gvfs libasound2 libaspell15 \
+	  libasyncns0 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libbrotli1 \
+	  libcairo-gobject2 libcairo2 libcanberra-gtk3-0 libcanberra-gtk3-module \
+	  libcanberra0 libdatrie1 libdb5.3 libdrm2 libegl1 \
+	  libepoxy0 libflac8 libfontconfig1 libfreetype6 libgbm1 libgdk-pixbuf2.0-0 \
+	  libgif7 libgl1 libglvnd0 libglx0 libgpm2 libgraphite2-3 libgstreamer-gl1.0-0 \
+	  libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgtk-3-0 libgudev-1.0-0 \
+	  libharfbuzz-icu0 libharfbuzz0b libhyphen0 libice6 libjansson4 \
+	  libjavascriptcoregtk-4.0-18 libjbig0 liblcms2-2 liblockfile1 \
+	  libltdl7 libm17n-0 libnotify4 libnss-mdns libnss-myhostname libnss-systemd \
+	  libogg0 liborc-0.4-0  libpango-1.0-0 libpangocairo-1.0-0 \
+	  libpangoft2-1.0-0 libpixman-1-0 libpng16-16 libpulse0 librsvg2-2 libsasl2-2 \
+	  libsecret-1-0 libsm6 libsndfile1 libsoup2.4-1 libstdc++6 libtdb1 \
+	  libthai0 libtiff5 libvorbis0a libvorbisenc2 libvorbisfile3 libwayland-client0 \
+	  libwayland-cursor0 libwayland-egl1 libwayland-server0 libwebpdemux2 \
+	  libwoff1 libx11-6 libx11-xcb1 libxau6 libxcb-render0 libxcb-shm0 libxcb1 \
+	  libxcomposite1 libxcursor1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxi6 \
+	  libxinerama1 libxkbcommon0 libxml2 libxpm4 libxrandr2 libxrender1 libxslt1.1 \
+	  libyajl2 
+#+END_SRC
+      Problematic packages on Ubuntu
+#+BEGIN_SRC bash
+      sudo apt install libsystemd-dev libwebp6 libssl1.1 libotf0 language-pack-en-base liboss4-salsa2 libcroco3 libenchant1c2a libicu66 libjpeg-turbo8 
+#+END_SRC
+   2. Download and extract emacs
+#+BEGIN_SRC bash
+      cd ~
+      wget https://ftp.gnu.org/pub/gnu/emacs/emacs-27.2.tar.gz
+      tar -xvzf emacs-27.2.tar.gz
+#+END_SRC
+   3. Configure and install emacs: This step will take a while and you are prompted to enter your password once.
+#+BEGIN_SRC bash
+      cd ~/emacs-27.2
+      ./configure --with-cairo
+      make
+      sudo make install
+      rm ~/emacs-27.2.tar.gz
+#+END_SRC
+   4. Try out if emacs works correctly with
+#+BEGIN_SRC bash
+      emacs -nw
+#+END_SRC
+* Use This Customization
+  1. Backup the local copy of ~~/.emacs.d~:
+     ~mv ~~/.emacs.d ~~/.emacs.d.bak~
+  2. Copy the ~~/.emacs.d~ in this directory to the user home:
+     ~cp -r ./.emacs.d ~~/~
+  3. Create a directory for RoamNotes (or modify ~~/.emacs.d/myinit.org~ to not include Org-Roam):
+     ~mkdir -p ~~/Notes~
+  4. Ensure an internet connection is active to enable package: installations
+  5. Run emacs as a daemon:
+     ~emacs --fg-daemon --debug-init~
+  8. Modify fonts named in ~~/.emacs.d/myinit.org~ for your own installed fonts.
+  6. If configuration is successful, initiate emacs client:
+     ~emacsclient -cn~
+  7. Otherwise, modify problematic parts of ~~/.emacs.d/myinit.org~ as the debugger indicates for your own system.
+* Uninstallation
+#+BEGIN_SRC bash
+   dpkg --get-selections | grep emacs
+   sudo apt remove --purge emacs-bin-common emacs-el emacs-gtk
+   cd ~/emacs-27.X
+   sudo make uninstall
+#+END_SRC

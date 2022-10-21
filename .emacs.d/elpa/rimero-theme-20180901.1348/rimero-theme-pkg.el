@@ -1,0 +1,2 @@
+;;; Generated package description from rimero-theme-20180901.1348/rimero-theme.el  -*- no-byte-compile: t -*-
+(define-package "rimero-theme" "20180901.1348" "Theme with a dark background suitable for UI and terminal usage." '((emacs "24")) :commit "a2e706c2b34f749019979a133f08a2d94a1104b3" :authors '(("Yves Zoundi" . "yveszoundi@users.sf.net")) :maintainer '("Yves Zoundi" . "yveszoundi@users.sf.net") :keywords '("faces" "theme" "dark" "light colors") :url "https://github.com/yveszoundi/emacs-rimero-theme")

@@ -1,0 +1,322 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga41ea7f">1. Introduction to Emacs</a>
+<ul>
+<li><a href="#orgc558451">1.1. Summary of Comparison with Other IDEs (Opinion)</a></li>
+</ul>
+</li>
+<li><a href="#orgfc140e3">2. Dotfiles Introduction</a></li>
+<li><a href="#org8fab93d">3. Structure of Dotfiles</a></li>
+<li><a href="#org4de6cce">4. Installation</a>
+<ul>
+<li><a href="#orgd88e794">4.1. Dotfiles</a>
+<ul>
+<li><a href="#org43e3e1e">4.1.1. Optional: Org-Roam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org57a0af5">5. Customization</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orga97d08d">5.0.1. Installation of packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9c1c0fb">6. Feature Highlights</a>
+<ul>
+<li><a href="#org290a1f0">6.1. Text Editing and Navigation</a>
+<ul>
+<li><a href="#orgfa185af">6.1.1. Text Selection and Copy/Paste</a></li>
+<li><a href="#org0522913">6.1.2. Rectangles</a></li>
+<li><a href="#org35bf6ba">6.1.3. Navigation (with Avy)</a></li>
+<li><a href="#org29eab0a">6.1.4. Multicursor and Find-Replace</a></li>
+</ul>
+</li>
+<li><a href="#orgb311869">6.2. View and workspace</a></li>
+<li><a href="#orgb61b6ad">6.3. System Administration</a>
+<ul>
+<li><a href="#org90b4e8f">6.3.1. Emacs Terminals</a></li>
+<li><a href="#org712f538">6.3.2. Tramp</a></li>
+<li><a href="#org0751a1d">6.3.3. Editing Files with Root Privileges</a></li>
+<li><a href="#orgdf327ec">6.3.4. Dired and Async</a></li>
+</ul>
+</li>
+<li><a href="#org5bcc90c">6.4. Code Development and Maintenance</a>
+<ul>
+<li><a href="#org5a63b57">6.4.1. Compilation Buffer</a></li>
+<li><a href="#orgada226f">6.4.2. Grep Buffer</a></li>
+<li><a href="#org280eed4">6.4.3. Magit</a></li>
+</ul>
+</li>
+<li><a href="#orgcd78b60">6.5. Technical Writing</a>
+<ul>
+<li><a href="#org5a166a3">6.5.1. Org-Babel Tangle</a></li>
+<li><a href="#org3e42b21">6.5.2. Org-Export</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga41ea7f" class="outline-2">
+<h2 id="orga41ea7f"><span class="section-number-2">1</span> Introduction to Emacs</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Emacs is a general-purpose text editor and programming environment [<a href="https://faculty.iiit.ac.in/~venkatesh.choppella/popl/current-topics/literate-programming/index.html">1</a>]. It is popularly described on <a href="https://www.reddit.com/r/emacs/">reddit.com/r/emacs</a> as "The extensible, customizable, self-documenting real-time display editor". Decades old and favored by notable old-school developers, emacs' attention over its long lifespan leaves it well-supported and applicable to software development, academic writing, and virtually any sort of text-based technical work. As an Integrated Desktop Environment (IDE), emacs may be ideal for backward-compatible, language-agnostic programming work based entirely in free software.
+</p>
+</div>
+<div id="outline-container-orgc558451" class="outline-3">
+<h3 id="orgc558451"><span class="section-number-3">1.1</span> Summary of Comparison with Other IDEs (Opinion)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+In contrast with other popular free-software text-editors such as vim and nano, emacs tends toward a more featureful and maximalistic approach. Relative to these, emacs' source code is not particularly lean, its base functionality is arcane and unintuitive, and out-of-the-box is completely unusable. However, once properly configured it should encounter negligible performance issues, and its interface is as transparent and intuitive as one configures it to be.
+With respect to proprietary software like VSCode, emacs clearly excels. Customizability of these proprietary programs is usually fraught with obscure challenges: the codebase is opaque and often large, and there is always risk for the loss of support (I used VSCode for several years before emacs).
+I believe for developers it is worth the time investment and configuration hassle to properly implement emacs, especially when used as a daily driver. My emacs configuration runs smoothly on decades-old hardware; with the proper application of keybindings, ergonomic efficiency and speed do become asymptotically optimal.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfc140e3" class="outline-2">
+<h2 id="orgfc140e3"><span class="section-number-2">2</span> Dotfiles Introduction</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+There are so many personal customizations possible in emacs, so that they are completely unique to the individual. This one focuses on the role of IDE for multi-lingual software development, augmented with agenda and note-taking functionality for daily convenience and administration. This configuration contains many functional, stylistic, and ergonomic tweaks, which are recommended to change to one's personal preference.
+Emacs is written in a dialect of lisp called emacs-lisp, or elisp. The code-blocks in <code>myinit.org</code> are the driving code for emacs configuration, and are marked up with plaintext comments and organizational structure using a feature of emacs called <code>org-mode</code>, in the style of so-called <a href="https://faculty.iiit.ac.in/~venkatesh.choppella/popl/current-topics/literate-programming/index.html">literate programming</a>. As such, these files are usable as-is by means of <code>org-babel</code> functionality included inside emacs; these example files should be sufficient to reproduce a working emacs build, which is enough to provide new users of emacs with a legible and featureful starting point for personal customization.
+</p>
+</div>
+</div>
+<div id="outline-container-org8fab93d" class="outline-2">
+<h2 id="org8fab93d"><span class="section-number-2">3</span> Structure of Dotfiles</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Attached below is an example <code>init.el</code> file. When placed in one's emacs <a href="https://www.emacswiki.org/emacs/LoadPath">load-path</a>, upon running emacs or an <a href="https://www.emacswiki.org/emacs/EmacsAsDaemon">emacs daemon</a> this init file will generate a new <code>myinit.el</code> configuration file from the accompanying <code>myinit.org</code> by way of a process called "tangling". This resulting <code>myinit.el</code> is what emacs interprets for its configuration.
+</p>
+</div>
+</div>
+<div id="outline-container-org4de6cce" class="outline-2">
+<h2 id="org4de6cce"><span class="section-number-2">4</span> Installation</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+This configuration uses emacs version 27.2. This is <b>not</b> the default version which is installed by running <code>sudo apt install emacs</code>. Some features of this configuration break when using the default version. To ensure all features work, follow the steps in <a href="./Emacs_27.2_Installation.html">./Emacs_27.2_Installation.html</a>. If there is an existing emacs configuration on the system, ensure it is completely removed prior to installation by following the <b>Uninstallation</b> instructions in the same document.
+</p>
+</div>
+<div id="outline-container-orgd88e794" class="outline-3">
+<h3 id="orgd88e794"><span class="section-number-3">4.1</span> Dotfiles</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Make a backup of <code>~/.emacs.d</code> directory and clear all files from it. Copy the <code>myinit.org</code> and <code>myinit.el</code> to the root of <code>~/.emacs.d/</code> directory. Run the command <code>emacs --fg-daemon --debug-init</code> in a terminal. Ensure internet access during this step for package installation. If all goes well, the terminal will output "<code>Starting Emacs Daemon</code>". Execute <code>emacsclient -cn -s</code> in another terminal to run emacs.
+</p>
+</div>
+<div id="outline-container-org43e3e1e" class="outline-4">
+<h4 id="org43e3e1e"><span class="section-number-4">4.1.1</span> Optional: Org-Roam</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+<a href="https://www.orgroam.com/">Org-Roam</a> is a note-taking database-management package for maintaining a personal wiki. To enable it, create a directory for Org-Roam Notes and its subfolders (this configuration names <code>~/Notes</code>). Change the variable <code>org-roam-directory</code> in <code>myinit.org</code> to point to the new directory. Customize the Templates in the Org-Roam subheader according to your needs and preference.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org57a0af5" class="outline-2">
+<h2 id="org57a0af5"><span class="section-number-2">5</span> Customization</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orga97d08d" class="outline-4">
+<h4 id="orga97d08d"><span class="section-number-4">5.0.1</span> Installation of packages</h4>
+<div class="outline-text-4" id="text-5-0-1">
+</div>
+<ol class="org-ol">
+<li><a id="org5c6cc41"></a>Package Repositories<br />
+<div class="outline-text-5" id="text-5-0-1-1">
+<p>
+Many popular packages are found on the public repository known as <a href="https://melpa.org/">MELPA</a>. After loading the line <code>(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))</code> of <code>myinit.org</code>, packages from this repository will be available for view via <code>M-x list-packages</code>. This is usually the simplest way to find new packages, as emacs will maintain available package documentation locally.
+</p>
+</div>
+</li>
+<li><a id="orgfb091bc"></a>Use-Package Usage<br />
+<div class="outline-text-5" id="text-5-0-1-2">
+<p>
+This configuration uses a meta-package called <code>use-package</code> to simplify package installation, which maintains easy portability and organization. Package-installation code snippets of <code>myinit.org</code> follow the basic template <code>(use-package &lt;package&gt; :ensure t)</code>. This alone is sufficient to ensure package installation; I recommended to do it this way when modifying these dotfiles to maintain reproducibility, rather than clicking 'Install' through <code>M-x list-package</code>.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9c1c0fb" class="outline-2">
+<h2 id="org9c1c0fb"><span class="section-number-2">6</span> Feature Highlights</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Features of common use to software developers:
+</p>
+</div>
+<div id="outline-container-org290a1f0" class="outline-3">
+<h3 id="org290a1f0"><span class="section-number-3">6.1</span> Text Editing and Navigation</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Consult and customize the <code>GLOBAL KEYBINDINGS-&gt;Text Navigation</code> section of <code>myinit.org</code>. 
+</p>
+</div>
+<div id="outline-container-orgfa185af" class="outline-4">
+<h4 id="orgfa185af"><span class="section-number-4">6.1.1</span> Text Selection and Copy/Paste</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+Use <code>M-SPC</code> or <code>C-SPC</code> to <code>mark</code> text, then move the <code>point</code> (text cursor) to highlight/select a region of text. This configuration rebinds to the common <code>C-S-c</code> copy, <code>C-S-v</code> paste/yank, and <code>C-S-x</code> cut/kill commands, which apply to such regions. By default, emacs uses <code>M-w</code>, <code>M-y</code>, and <code>C-w</code> respectively for these commands.
+</p>
+</div>
+</div>
+<div id="outline-container-org0522913" class="outline-4">
+<h4 id="org0522913"><span class="section-number-4">6.1.2</span> Rectangles</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+The command prefix <code>C-x r</code> applies to rectangle editing commands, which operate on the rectangle formed with point and mark as corners: for example, <code>C-x r t</code> to multi-replace text in a rectangle, <code>C-x r M-w</code> and <code>C-x r y</code> to copy and paste rectangles, respectively.
+</p>
+</div>
+</div>
+<div id="outline-container-org35bf6ba" class="outline-4">
+<h4 id="org35bf6ba"><span class="section-number-4">6.1.3</span> Navigation (with <a href="https://github.com/abo-abo/avy">Avy</a>)</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+Use <code>M-p</code> to perform <code>avy-goto-char</code>, jumping the cursor to a visible text point based on character input. Avy is also used to jump to visible lines with <code>M-/</code>. <code>M-g g</code> performs <code>goto-line</code>, navigating around the entire buffer by line number. Use the <code>swiper</code> command (<code>C-s</code> or <code>M-;</code>) for a dynamic fuzzy-search minibuffer. Use <code>M-[jl]</code> and <code>M-S-[jl]</code> to navigate text by word or character, respectively; <code>M-[ik]</code> to navigate up/ and down lines, <code>M-S-[ik]</code> to move lines. Use <code>C-[ijkl]</code> to move to a window directionally, <code>C-S-[ijkl]</code> to move buffers between windows; <code>M-S-/</code> and <code>C-S-/</code> are the ace-jump counterparts to these respective movements.
+In org-mode and language modes, the <code>M-[</code>, <code>M-]</code>, <code>M-{</code> and <code>M-}</code> keybindings emulate a header/function navigation paradigm.
+</p>
+</div>
+</div>
+<div id="outline-container-org29eab0a" class="outline-4">
+<h4 id="org29eab0a"><span class="section-number-4">6.1.4</span> Multicursor and Find-Replace</h4>
+<div class="outline-text-4" id="text-6-1-4">
+<p>
+The package <code>multiple-cursors</code> gives familiar IDE multi-cursor editing capability. Use <code>C-M-,</code> and <code>C-M-.</code> to mark previous and next occurrences of a selected region, respectively, with a duplicate cursor. Use <code>C-M-/</code> (<code>ace-mc-add-multiple-cursors</code>) for ace-using interactive char-candidate selection.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb311869" class="outline-3">
+<h3 id="orgb311869"><span class="section-number-3">6.2</span> View and workspace</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Emacs tabs are really an implementation of a workspace-management system. In this configuration, <code>C-+</code> creates a new tab and offers "fullscreen-toggle"; toggle back with <code>C--</code> (<code>tab-bar-close-tab</code>). The control-curly braces navigate between "tabs"/workspaces: <code>C-{</code> and <code>C-}</code>.
+Emacs operates on a system of buffers. To see a list of all running buffers, use <code>M-x ibuffer</code> (<code>C-x C-b</code>). This list is sorted by buffer type using regular expressions on the buffer names; customize the list by changing the <code>PACKAGES-&gt;Ibuffer</code> section of <code>myinit.org</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb61b6ad" class="outline-3">
+<h3 id="orgb61b6ad"><span class="section-number-3">6.3</span> System Administration</h3>
+<div class="outline-text-3" id="text-6-3">
+</div>
+<div id="outline-container-org90b4e8f" class="outline-4">
+<h4 id="org90b4e8f"><span class="section-number-4">6.3.1</span> Emacs Terminals</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+There are a few different choices for terminal buffers inside emacs. They each have their strengths and flaws.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org52c3655"></a>Eshell<br />
+<div class="outline-text-5" id="text-6-3-1-1">
+<p>
+Included in emacs, eshell has nice features that integrate well with the rest of emacs, such as scrollback, editing, and navigating with support for the usual keybindings. This is to say, eshell buffers are fully editable and navigable. However, eshell has the drawback of disallowing certain character combinations common to bash; in particular, it does not support bash-style subshells, since these make use of the same parenthetical markers in which eshell is written. For this reason, eshell is unsuitable for execution of most nontrivial scripts. Despite this, eshell is still an excellent choice for most terminal commands. In this configuration, the command for a new eshell terminal buffer is bound to <code>M-e</code>.
+</p>
+</div>
+</li>
+<li><a id="org9cf2062"></a>Multi-Term<br />
+<div class="outline-text-5" id="text-6-3-1-2">
+<p>
+Although Term-Mode is included within emacs, the MELPA package <a href="https://www.emacswiki.org/emacs/MultiTerm">multi-term</a> simplifies term-mode buffer management. Term-mode is a fully-functional terminal, and it is perfectly usable for running bash scripts, unlike Eshell. One drawback, however, is that usual terminal keybindings such as <code>C-c</code>, or the <code>C-a</code> <code>screen</code> prefix, are not picked up by term-mode, rather emacs. However, repeating <code>C-c C-c</code> sends the cancel command to term-mode. Tab completion works, but is rebound here to <code>M-&lt;tab&gt;</code>. The command for a new multi-term buffer is bound to <code>M-E</code> in this configuration.
+</p>
+</div>
+</li>
+<li><a id="org00d1fdd"></a>Emacs No-Window<br />
+<div class="outline-text-5" id="text-6-3-1-3">
+<p>
+Emacs may also be run similarly to nano inside a terminal. Use the command <code>emacs -nw</code> (or <code>emacsclient -c -nw</code> when running emacs as a daemon). Most features run like you would expect in this form, but keybindings are sometimes lost, i.e. clobbered by the hosting terminal.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org712f538" class="outline-4">
+<h4 id="org712f538"><span class="section-number-4">6.3.2</span> Tramp</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<p>
+Tramp is a way to view and modify remote files. This is very common for use in network-testing setup with multiple systems. In <code>find-file</code> (or <code>counsel-find-file</code> with <code>C-x C-v</code>), simply append:
+<code>/ssh::user@host:~/</code> to the beginning of the file prompt. Emacs will prompt for password (once per session) and/or ssh-key exchange will be handled automatically. To edit files as root over the network, use <code>C-x C-v</code> with <code>/ssh:you@remotehost|sudo:oracle@remotehost:/path/to/file</code>. With effective use of local caching, this tool is workable even over VPN. However, a break in the network will cause emacs to freeze and can result in loss of data from other buffers or processes. I recommend to create a second named daemon when initiating network file management by executing the command <code>emacs --fg-daemon=remote</code>, then new emacs client instances can be initiated with <code>emacsclient -cn -s remote</code>; this mitigates the effects of network outage vulnerability.
+</p>
+</div>
+</div>
+<div id="outline-container-org0751a1d" class="outline-4">
+<h4 id="org0751a1d"><span class="section-number-4">6.3.3</span> Editing Files with Root Privileges</h4>
+<div class="outline-text-4" id="text-6-3-3">
+<p>
+Similar to remote editing, simply append <code>/sudo::/</code> to the beginning of any <code>find-file</code> (or <code>counsel-find-file</code>) query. All changes to that buffer will then be executed as root. Navigation with Dired from this buffer will maintain root privileges, creating more <code>sudo</code> buffers, so it is not necessary to run the same <code>find-file /sudo::/</code> command very often.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdf327ec" class="outline-4">
+<h4 id="orgdf327ec"><span class="section-number-4">6.3.4</span> Dired and Async</h4>
+<div class="outline-text-4" id="text-6-3-4">
+<p>
+Dired is a directory navigator and editor for files. To initiate Dired mode, use the same command for <code>counsel-find-file</code>, here bound to <code>C-x C-v</code>, but with the name of a directory rather than a file. In Dired mode, mark files to be modified with <code>m</code>, then perform various operations such as <code>mv</code>, <code>cp</code>, <code>rm</code> with the keys <code>m</code>, <code>C</code>, <code>R</code>, respectively. Use <code>Z</code> to zip or unzip file archives. Use <code>C-x C-q</code> to enter Editable Dired Mode, then use any typical emacs commands in the dired buffer to rename or delete files, then save changes with <code>C-x C-s</code>. In this configuration, use <code>M-,</code> and <code>M-.</code> to navigate up and down the directory structure, respectively. For copying or syncing large files or backups, use <code>Y</code> or <code>M-x ora-dired-rsync</code>. Use <code>w</code> to copy the path at point or marked. Use <code>M-w</code> to copy the file path of the current buffer (this also works for files).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5bcc90c" class="outline-3">
+<h3 id="org5bcc90c"><span class="section-number-3">6.4</span> Code Development and Maintenance</h3>
+<div class="outline-text-3" id="text-6-4">
+</div>
+<div id="outline-container-org5a63b57" class="outline-4">
+<h4 id="org5a63b57"><span class="section-number-4">6.4.1</span> Compilation Buffer</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<p>
+Of particular use to developers is the compile command, which in this configuration is bound to <code>C-x e</code>. A popup window with linked compilation errors appears.
+</p>
+</div>
+</div>
+<div id="outline-container-orgada226f" class="outline-4">
+<h4 id="orgada226f"><span class="section-number-4">6.4.2</span> Grep Buffer</h4>
+<div class="outline-text-4" id="text-6-4-2">
+<p>
+The grep buffer is accessible via <code>M-x lgrep</code>. It generates a navigable list of linked references to grep output, eliminating the need to switch to a terminal while editing in a project directory.
+</p>
+</div>
+</div>
+<div id="outline-container-org280eed4" class="outline-4">
+<h4 id="org280eed4"><span class="section-number-4">6.4.3</span> Magit</h4>
+<div class="outline-text-4" id="text-6-4-3">
+<p>
+This is a low-level GUI for git with logs, status buffer and quick keybindings. It offers a self-evident visual aid to git management. Magit is available in emacs by default. It is accessible via the keybinding <code>C-x g</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcd78b60" class="outline-3">
+<h3 id="orgcd78b60"><span class="section-number-3">6.5</span> Technical Writing</h3>
+<div class="outline-text-3" id="text-6-5">
+</div>
+<div id="outline-container-org5a166a3" class="outline-4">
+<h4 id="org5a166a3"><span class="section-number-4">6.5.1</span> Org-Babel Tangle</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<p>
+This is one feature for testing small code fragments. With org-mode enabled, create a code block enclosed in the form <code>#+BEGIN_SRC</code> &lt;language&gt; <code>#+END_SRC</code>. Then <code>C-c '</code> to edit in the specified language mode, and <code>C-c C-c</code> executes the code block. These code blocks can be manipulated for a variety of output formats and specializations, even linking remote references of code blocks to one another. This lends itself the ability to display and execute code from multiple languages in the same document. Integration with Org-Tables allows for dynamic spreadsheets programmable in any language. Additionally, the <code>M-x org-babel-tangle</code> command (<code>C-c C-v t</code>) combines multiple code blocks to generate executable scripts.
+The Org-Transclude package dynamically incorporates <a href="https://en.wikipedia.org/wiki/Transclusion">occurences</a> of text from another file into a org-file. Transclusions also work as fully executable code blocks. For example, write <code>#+transclude: [[./hello.sh]] :src bash</code> in an org file, then on that line execute <code>C-c C-c</code>. More information is found at <a href="https://github.com/nobiot/org-transclusion">github.com/nobiot/org-transclusion</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org3e42b21" class="outline-4">
+<h4 id="org3e42b21"><span class="section-number-4">6.5.2</span> Org-Export</h4>
+<div class="outline-text-4" id="text-6-5-2">
+<p>
+An org file may export to several document types, including HTML, PDF, and LaTeX. To access the <code>export-dispatcher</code> from within an org buffer, execute <code>C-c C-e</code>. A simple HTML export command is <code>C-c C-e C-b C-a h o</code> for Body-Only, Async-Export, HTML-export and open file. HTML exports maintain header hierarchy, images, links, tables, and code formatting.
+</p>
+</div>
+</div>
+</div>
+</div>
