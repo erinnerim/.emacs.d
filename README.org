@@ -1,9 +1,3 @@
-:PROPERTIES:
-:ID:       7fbe1f6c-6c69-41e5-b5db-5eacf1c2b839
-:END:
-#+title: Emacs Writeup
-#+category: Emacs Writeup
-
 * Introduction to Emacs
   Emacs is a general-purpose text editor and programming environment [[[https://faculty.iiit.ac.in/~venkatesh.choppella/popl/current-topics/literate-programming/index.html][1]]]. It is popularly described on [[https://www.reddit.com/r/emacs/][reddit.com/r/emacs]] as "The extensible, customizable, self-documenting real-time display editor". Decades old and favored by notable old-school developers, emacs' attention over its long lifespan leaves it well-supported and applicable to software development, academic writing, and virtually any sort of text-based technical work. As an Integrated Desktop Environment (IDE), emacs may be ideal for backward-compatible, language-agnostic programming work based entirely in free software.
 ** Summary of Comparison with Other IDEs (Opinion)
