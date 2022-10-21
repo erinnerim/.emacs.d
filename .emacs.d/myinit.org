@@ -397,24 +397,20 @@
 	  :if-new (file+head "./References/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Reference\n")
 	  :unnarrowed t)
 	 ("a" "Agenda" plain
-	  (file "~/RoamNotes/Templates/AgendaTemplate.org")
+	  (file "~/Notes/Templates/AgendaTemplate.org")
 	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: :Agenda:\n")
 	  :unnarrowed t)
 	 ("p" "Project" plain
-	  (file "~/RoamNotes/Templates/ProjectTemplate.org")
+	  (file "~/Notes/Templates/ProjectTemplate.org")
 	  :if-new (file+head "./Project/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: :Project:\n")
 	  :unnarrowed t)
 	 ("l" "Place" plain
-	  (file "~/RoamNotes/Templates/PlaceTemplate.org")
+	  (file "~/Notes/Templates/PlaceTemplate.org")
 	  :if-new (file+head "./Places/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: :Place:Reference:\n")
 	  :unnarrowed t)
 	 ("e" "Person" plain
-	  (file "~/RoamNotes/Templates/PersonTemplate.org")
+	  (file "~/Notes/Templates/PersonTemplate.org")
 	  :if-new (file+head "./People/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: :Person:Reference:\n")
-	  :unnarrowed t)
-	 ("c" "Candela" plain
-	  (file "~/RoamNotes/Templates/ProjectTemplate.org")
-	  :if-new (file+head "./Candela/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: :Candela:\n")
 	  :unnarrowed t)))
       :bind (("C-c l" . org-roam-buffer-toggle)
 	     ("C-c f" . my-org-roam-node-find)
